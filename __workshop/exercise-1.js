@@ -1,3 +1,5 @@
+const requestPromise = require("request-promise");
+
 // Exercise 1 - `getIssPosition`
 // -----------------------------
 //   1. Install the request-promise module with `yarn`
@@ -12,10 +14,26 @@
 
 
 // Returns the current position of the ISS
-function getIssPosition() {
-
+const request = require('request-promise')
+function getIssPosition(){
+    return request('http://api.open-notify.org/iss-now.json')
+        .then(response => {
+            const issPosition = JSON.parse(response)
+            return {
+                lat : issPosition.iss_position.latitude,
+                lng : issPosition.iss_position.longitude
+            }
+        })
+        .then(data => {
+            issPosition = data;
+            console.log(issPosition)
+            return issPosition;
+        })
 }
-
+let issPosition = getIssPosition()
+    .then(data => {
+        // console.log(issPosition)
+    })
 // NOTE:
 // in order to see the result of the promise, you need to console.log
 // the data WITHIN the promise chain (in its own then)

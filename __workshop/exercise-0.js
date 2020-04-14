@@ -37,11 +37,17 @@ const arrayOfWords = ['cucumber', 'tomatos', 'avocado']
 const complicatedArray = ['cucumber', 44, true]
   
 const makeAllCaps = (array) => {
-    
+    array.forEach(element => {
+        if (typeof element !== 'string') {
+            throw error
+        }
+        let newWord = element.toUpperCase()
+        return newWord;
+    });
 }
 
 const sortWords = (array) => {
-    
+    array.sort()
 } 
 
 // Calling (testing)
